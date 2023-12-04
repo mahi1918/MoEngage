@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login / Signup</title>
+    <style>
+        .login-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="signup-form" class="signup-form">
+            <h2>Signup</h2>
+            <form action="{{ url_for('signup') }}" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Signup">
+            </form>
+            <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForms()">Login here</a>.</p>
+        </div>
+
+        <div id="login-form" class="login-form">
+            <h2>Login</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+            <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleForms()">Signup here</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            var signupForm = document.getElementById('signup-form');
+            var loginForm = document.getElementById('login-form');
+
+            if (signupForm.style.display === 'none') {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

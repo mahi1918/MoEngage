@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breweries</title>
+    <style>
+        body {
+            background-color: #3498db; 
+            color: #161515; 
+            padding: 20px; 
+        }
+
+        h1 {
+            text-align: center; 
+        }
+
+        .brewery-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px; 
+        }
+
+        .brewery {
+            background-color: #babec0;
+            padding: 10px;
+            border-radius: 8px;
+            width: 90%;
+        }
+
+        .review {
+            margin-top: 10px;
+            background-color: #34495e;
+            padding: 8px; 
+            border-radius: 5px;
+        }
+
+        .btn-add-review {
+            background-color: #2ecc71; 
+            color: #fff; 
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-add-review-container {
+            text-align: right; 
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Breweries</h1>
+
+    <div class="btn-add-review-container">
+        <a href="{{ url_for('add_review') }}" class="btn-add-review">Add Review</a>
+    </div>
+
+    {% for brewery in breweries_data %}
+        <div class="brewery-container">
+            <div class="brewery">
+                <h2>{{ brewery.name }}</h2>
+                <p>{{ brewery.address }}</p>
+                <p>{{ brewery.phone }}</p>
+                <p>{{ brewery.website_url }}</p>
+                <p>{{ brewery.current_rating }}</p>
+                <p>{{ brewery.state }}</p>
+                <p>{{ brewery.city }}</p>
+
+
+            </div>
+
+            {% for review in brewery.reviews %}
+                <div class="review">
+                    <p>Rating: {{ review.rating }}</p>
+                    <p>Description: {{ review.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+</body>
+</html>
